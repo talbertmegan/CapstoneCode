@@ -19,31 +19,9 @@ from django.conf.urls import url
 from cupsite import views
 
 urlpatterns = [
-    path('', include('polls.urls')),
-    path('login/',views.Login, name="login"), #make login view
-    path('dashboard/', views.Dashboard, name="dashboard"), #make dashboard view that frontend goes in
-    path('share/', views.Share, name="share"), #make share view for export of data
+    path('', include('cupapp.urls')),
+    path('demo/', include('cupapp.urls')),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 
 ]
-
-""" 
-from django.conf.urls import url
-from display import views
-from django.urls import path
-
-
-urlpatterns = [
-    path('',views.Display,name="display"),
-    path('display/engineering', views.Engineering, name="engineering"),
-    path('display/marketing', views.Marketing, name="marketing"),
-    path('display/users', views.Users, name="users"),
-    path('display/operations',views.Operations, name="operations"),
-    path('display/customer',views.Customer, name="customer"),
-    path('display/overall', views.Overall, name="overall"),
-    path('display/events', views.eventDisp, name='calendar'),
-    path('display/sales', views.Opportunities, name="sales"),
-    path('api/lead/', views.LeadListCreate.as_view() ),
-
-] """
