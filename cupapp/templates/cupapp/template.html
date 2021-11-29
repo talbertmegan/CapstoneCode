@@ -2,12 +2,12 @@
 <html>
     <head>
         <title>Smart Menstrual Cup</title>
-        <link rel="stylesheet" href="{% static 'css/Display.css' %}">
-       <!-- <link rel="shortcut icon" href="favicon.ico"/>  -->   
+        <link rel="stylesheet" href="{% static 'CSS/Dashboard.css' %}">
+      <!--  <link rel="shortcut icon" href="../media/favicon.jpg"/> -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         {% block head %}
-        <meta http-equiv="refresh" content="60;url=/cupapp/dashboard" />
+        <meta http-equiv="refresh" content="60;url=/login" />
         {% endblock %}
     </head>
 
@@ -48,7 +48,7 @@
             GetClock();
             setInterval(GetClock,1000);
         </script>
-        <div id="title">Title here</div>
+        <div id="title">Smart Menstrual Cup</div>
         {% block body %}Body to be replaced. You should never actually see this text in browser.{% endblock %}
         <footer></footer>
     </body>

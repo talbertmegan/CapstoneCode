@@ -3,7 +3,7 @@
 {% extends 'cupapp/template.html' %}
 
 {% block head %}
-        <meta http-equiv="refresh" content="60;url=/cupapp/dashboard" />
+        <!--<meta http-equiv="refresh" content="60;url=/dashboard" />-->
 {% endblock %}
 
 
@@ -12,9 +12,14 @@
         <div id="datatitle">
             Welcome to the Dashboard for Emma and Megan's capstone project <br> <br>
 
+            Data will be displayed here
+
         </div>
         <div id="data">
-            
+            User controls will be displayed here <br> <br>
+            <a href="/recording" title="record">Record New Measurement</a> <br><br>
+            <a href="/share" title="share">Export Data</a> <br> <br> 
+            <a href="/login" title="loginPage">Log Out</a>
         </div>
     </body>
     {% endblock %}

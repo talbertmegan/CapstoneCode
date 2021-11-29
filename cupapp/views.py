@@ -15,3 +15,6 @@ def Login(request):
 
 def Share(request):
     return render(request, 'cupapp/share.html')
+
+def RecordData(request):
+    return render(request, 'cupapp/recorddata.html')
