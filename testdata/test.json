@@ -1,0 +1,658 @@
+{
+    "time1": {
+        "time": "2",
+        "reading": "-0.00"
+    },
+    "time2": {
+        "time": "3",
+        "reading": "-0.00"
+    },
+    "time3": {
+        "time": "4",
+        "reading": "0.00"
+    },
+    "time4": {
+        "time": "5",
+        "reading": "-0.00"
+    },
+    "time5": {
+        "time": "6",
+        "reading": "0.82"
+    },
+    "time6": {
+        "time": "7",
+        "reading": "0.76"
+    },
+    "time7": {
+        "time": "8",
+        "reading": "0.78"
+    },
+    "time8": {
+        "time": "9",
+        "reading": "0.77"
+    },
+    "time9": {
+        "time": "10",
+        "reading": "1.05"
+    },
+    "time10": {
+        "time": "11",
+        "reading": "1.57"
+    },
+    "time11": {
+        "time": "12",
+        "reading": "1.57"
+    },
+    "time12": {
+        "time": "13",
+        "reading": "1.57"
+    },
+    "time13": {
+        "time": "14",
+        "reading": "1.58"
+    },
+    "time14": {
+        "time": "15",
+        "reading": "1.57"
+    },
+    "time15": {
+        "time": "16",
+        "reading": "1.58"
+    },
+    "time16": {
+        "time": "17",
+        "reading": "1.58"
+    },
+    "time17": {
+        "time": "18",
+        "reading": "1.57"
+    },
+    "time18": {
+        "time": "19",
+        "reading": "1.57"
+    },
+    "time19": {
+        "time": "20",
+        "reading": "1.58"
+    },
+    "time20": {
+        "time": "21",
+        "reading": "1.58"
+    },
+    "time21": {
+        "time": "22",
+        "reading": "1.60"
+    },
+    "time22": {
+        "time": "23",
+        "reading": "2.42"
+    },
+    "time23": {
+        "time": "24",
+        "reading": "2.42"
+    },
+    "time24": {
+        "time": "25",
+        "reading": "2.43"
+    },
+    "time25": {
+        "time": "26",
+        "reading": "2.42"
+    },
+    "time26": {
+        "time": "27",
+        "reading": "2.46"
+    },
+    "time27": {
+        "time": "28",
+        "reading": "3.20"
+    },
+    "time28": {
+        "time": "29",
+        "reading": "3.20"
+    },
+    "time29": {
+        "time": "30",
+        "reading": "3.20"
+    },
+    "time30": {
+        "time": "31",
+        "reading": "3.20"
+    },
+    "time31": {
+        "time": "32",
+        "reading": "3.19"
+    },
+    "time32": {
+        "time": "33",
+        "reading": "3.20"
+    },
+    "time33": {
+        "time": "34",
+        "reading": "4.02"
+    },
+    "time34": {
+        "time": "35",
+        "reading": "4.02"
+    },
+    "time35": {
+        "time": "36",
+        "reading": "4.02"
+    },
+    "time36": {
+        "time": "37",
+        "reading": "4.03"
+    },
+    "time37": {
+        "time": "38",
+        "reading": "4.02"
+    },
+    "time38": {
+        "time": "39",
+        "reading": "4.06"
+    },
+    "time39": {
+        "time": "40",
+        "reading": "4.92"
+    },
+    "time40": {
+        "time": "41",
+        "reading": "4.86"
+    },
+    "time41": {
+        "time": "42",
+        "reading": "4.86"
+    },
+    "time42": {
+        "time": "43",
+        "reading": "4.86"
+    },
+    "time43": {
+        "time": "44",
+        "reading": "4.86"
+    },
+    "time44": {
+        "time": "45",
+        "reading": "4.89"
+    },
+    "time45": {
+        "time": "46",
+        "reading": "5.68"
+    },
+    "time46": {
+        "time": "47",
+        "reading": "5.68"
+    },
+    "time47": {
+        "time": "48",
+        "reading": "5.67"
+    },
+    "time48": {
+        "time": "49",
+        "reading": "5.67"
+    },
+    "time49": {
+        "time": "50",
+        "reading": "5.70"
+    },
+    "time50": {
+        "time": "51",
+        "reading": "6.47"
+    },
+    "time51": {
+        "time": "53",
+        "reading": "6.47"
+    },
+    "time52": {
+        "time": "54",
+        "reading": "6.48"
+    },
+    "time53": {
+        "time": "55",
+        "reading": "6.49"
+    },
+    "time54": {
+        "time": "56",
+        "reading": "7.32"
+    },
+    "time55": {
+        "time": "57",
+        "reading": "7.31"
+    },
+    "time56": {
+        "time": "58",
+        "reading": "7.32"
+    },
+    "time57": {
+        "time": "59",
+        "reading": "7.36"
+    },
+    "time58": {
+        "time": "60",
+        "reading": "8.18"
+    },
+    "time59": {
+        "time": "61",
+        "reading": "8.17"
+    },
+    "time60": {
+        "time": "62",
+        "reading": "8.17"
+    },
+    "time61": {
+        "time": "63",
+        "reading": "8.96"
+    },
+    "time62": {
+        "time": "64",
+        "reading": "8.96"
+    },
+    "time63": {
+        "time": "65",
+        "reading": "8.96"
+    },
+    "time64": {
+        "time": "66",
+        "reading": "10.25"
+    },
+    "time65": {
+        "time": "67",
+        "reading": "10.25"
+    },
+    "time66": {
+        "time": "68",
+        "reading": "10.24"
+    },
+    "time67": {
+        "time": "69",
+        "reading": "10.23"
+    },
+    "time68": {
+        "time": "70",
+        "reading": "10.27"
+    },
+    "time69": {
+        "time": "71",
+        "reading": "11.17"
+    },
+    "time70": {
+        "time": "72",
+        "reading": "11.17"
+    },
+    "time71": {
+        "time": "73",
+        "reading": "11.15"
+    },
+    "time72": {
+        "time": "74",
+        "reading": "11.24"
+    },
+    "time73": {
+        "time": "75",
+        "reading": "12.64"
+    },
+    "time74": {
+        "time": "76",
+        "reading": "12.61"
+    },
+    "time75": {
+        "time": "77",
+        "reading": "12.60"
+    },
+    "time76": {
+        "time": "78",
+        "reading": "12.61"
+    },
+    "time77": {
+        "time": "79",
+        "reading": "12.72"
+    },
+    "time78": {
+        "time": "80",
+        "reading": "13.49"
+    },
+    "time79": {
+        "time": "81",
+        "reading": "13.50"
+    },
+    "time80": {
+        "time": "82",
+        "reading": "13.49"
+    },
+    "time81": {
+        "time": "83",
+        "reading": "13.50"
+    },
+    "time82": {
+        "time": "84",
+        "reading": "13.49"
+    },
+    "time83": {
+        "time": "85",
+        "reading": "14.53"
+    },
+    "time84": {
+        "time": "86",
+        "reading": "14.93"
+    },
+    "time85": {
+        "time": "87",
+        "reading": "14.91"
+    },
+    "time86": {
+        "time": "88",
+        "reading": "14.92"
+    },
+    "time87": {
+        "time": "89",
+        "reading": "14.96"
+    },
+    "time88": {
+        "time": "90",
+        "reading": "14.97"
+    },
+    "time89": {
+        "time": "91",
+        "reading": "16.06"
+    },
+    "time90": {
+        "time": "92",
+        "reading": "16.06"
+    },
+    "time91": {
+        "time": "93",
+        "reading": "16.05"
+    },
+    "time92": {
+        "time": "94",
+        "reading": "16.08"
+    },
+    "time93": {
+        "time": "95",
+        "reading": "16.43"
+    },
+    "time94": {
+        "time": "96",
+        "reading": "17.66"
+    },
+    "time95": {
+        "time": "97",
+        "reading": "17.73"
+    },
+    "time96": {
+        "time": "98",
+        "reading": "17.69"
+    },
+    "time97": {
+        "time": "99",
+        "reading": "17.69"
+    },
+    "time98": {
+        "time": "100",
+        "reading": "17.67"
+    },
+    "time99": {
+        "time": "101",
+        "reading": "17.85"
+    },
+    "time100": {
+        "time": "102",
+        "reading": "17.94"
+    },
+    "time101": {
+        "time": "103",
+        "reading": "17.91"
+    },
+    "time102": {
+        "time": "104",
+        "reading": "17.91"
+    },
+    "time103": {
+        "time": "105",
+        "reading": "17.89"
+    },
+    "time104": {
+        "time": "106",
+        "reading": "17.89"
+    },
+    "time105": {
+        "time": "107",
+        "reading": "17.89"
+    },
+    "time106": {
+        "time": "108",
+        "reading": "18.83"
+    },
+    "time107": {
+        "time": "109",
+        "reading": "18.80"
+    },
+    "time108": {
+        "time": "110",
+        "reading": "18.80"
+    },
+    "time109": {
+        "time": "111",
+        "reading": "18.80"
+    },
+    "time110": {
+        "time": "112",
+        "reading": "18.83"
+    },
+    "time111": {
+        "time": "113",
+        "reading": "19.80"
+    },
+    "time112": {
+        "time": "114",
+        "reading": "19.79"
+    },
+    "time113": {
+        "time": "115",
+        "reading": "19.79"
+    },
+    "time114": {
+        "time": "116",
+        "reading": "19.79"
+    },
+    "time115": {
+        "time": "117",
+        "reading": "19.78"
+    },
+    "time116": {
+        "time": "118",
+        "reading": "19.81"
+    },
+    "time117": {
+        "time": "119",
+        "reading": "20.71"
+    },
+    "time118": {
+        "time": "120",
+        "reading": "20.71"
+    },
+    "time119": {
+        "time": "121",
+        "reading": "20.70"
+    },
+    "time120": {
+        "time": "122",
+        "reading": "20.72"
+    },
+    "time121": {
+        "time": "123",
+        "reading": "22.28"
+    },
+    "time122": {
+        "time": "124",
+        "reading": "22.28"
+    },
+    "time123": {
+        "time": "125",
+        "reading": "22.27"
+    },
+    "time124": {
+        "time": "126",
+        "reading": "22.27"
+    },
+    "time125": {
+        "time": "127",
+        "reading": "23.86"
+    },
+    "time126": {
+        "time": "128",
+        "reading": "23.85"
+    },
+    "time127": {
+        "time": "129",
+        "reading": "23.84"
+    },
+    "time128": {
+        "time": "130",
+        "reading": "23.91"
+    },
+    "time129": {
+        "time": "131",
+        "reading": "25.41"
+    },
+    "time130": {
+        "time": "132",
+        "reading": "25.27"
+    },
+    "time131": {
+        "time": "133",
+        "reading": "25.25"
+    },
+    "time132": {
+        "time": "134",
+        "reading": "25.26"
+    },
+    "time133": {
+        "time": "135",
+        "reading": "25.28"
+    },
+    "time134": {
+        "time": "136",
+        "reading": "26.46"
+    },
+    "time135": {
+        "time": "137",
+        "reading": "26.39"
+    },
+    "time136": {
+        "time": "138",
+        "reading": "26.39"
+    },
+    "time137": {
+        "time": "139",
+        "reading": "26.38"
+    },
+    "time138": {
+        "time": "140",
+        "reading": "27.48"
+    },
+    "time139": {
+        "time": "141",
+        "reading": "27.47"
+    },
+    "time140": {
+        "time": "142",
+        "reading": "27.48"
+    },
+    "time141": {
+        "time": "143",
+        "reading": "27.97"
+    },
+    "time142": {
+        "time": "144",
+        "reading": "28.61"
+    },
+    "time143": {
+        "time": "145",
+        "reading": "28.60"
+    },
+    "time144": {
+        "time": "146",
+        "reading": "28.64"
+    },
+    "time145": {
+        "time": "147",
+        "reading": "29.72"
+    },
+    "time146": {
+        "time": "148",
+        "reading": "29.70"
+    },
+    "time147": {
+        "time": "149",
+        "reading": "29.71"
+    },
+    "time148": {
+        "time": "150",
+        "reading": "30.25"
+    },
+    "time149": {
+        "time": "151",
+        "reading": "29.70"
+    },
+    "time150": {
+        "time": "152",
+        "reading": "30.18"
+    },
+    "time151": {
+        "time": "153",
+        "reading": "30.03"
+    },
+    "time152": {
+        "time": "154",
+        "reading": "29.95"
+    },
+    "time153": {
+        "time": "155",
+        "reading": "29.94"
+    },
+    "time154": {
+        "time": "156",
+        "reading": "29.91"
+    },
+    "time155": {
+        "time": "157",
+        "reading": "29.91"
+    },
+    "time156": {
+        "time": "158",
+        "reading": "29.89"
+    },
+    "time157": {
+        "time": "159",
+        "reading": "29.88"
+    },
+    "time158": {
+        "time": "160",
+        "reading": "29.86"
+    },
+    "time159": {
+        "time": "161",
+        "reading": "29.88"
+    },
+    "time160": {
+        "time": "162",
+        "reading": "29.81"
+    },
+    "time161": {
+        "time": "163",
+        "reading": "29.80"
+    },
+    "time162": {
+        "time": "164",
+        "reading": "29.81"
+    },
+    "time163": {
+        "time": "165",
+        "reading": "29.72"
+    },
+    "time164": {
+        "time": "166",
+        "reading": "29.71"
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "time1": {
+        "time": "1",
+        "reading": "0.00"
+    },
+    "time2": {
+        "time": "2",
+        "reading": "0.00"
+    },
+    "time3": {
+        "time": "3",
+        "reading": "0.00"
+    },
+    "time4": {
+        "time": "4",
+        "reading": "0.00"
+    },
+    "time5": {
+        "time": "5",
+        "reading": "0.00"
+    },
+    "time6": {
+        "time": "6",
+        "reading": "0.10"
+    },
+    "time7": {
+        "time": "7",
+        "reading": "0.14"
+    },
+    "time8": {
+        "time": "8",
+        "reading": "0.15"
+    },
+    "time9": {
+        "time": "9",
+        "reading": "0.20"
+    }
+}
