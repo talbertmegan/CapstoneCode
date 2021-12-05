@@ -1,10 +1,12 @@
 import numpy as np
 import json
 import ast
+import os.path
+import os
 # from sklearn.linear_model import LinearRegression
 
 # use relative pathing
-# os.path.join(os.getcwd(), 'testdata0.txt')
+ #os.path.join(os.getcwd(), 'testdata0.txt')
 filename = 'testdata0.txt'
 dict1 = {}
 # fields in the file 
@@ -32,11 +34,11 @@ with open(filename) as fh:
         dict2 = {}
         while i<len(fields):
               
-                # creating dictionary for each employee
+                # creating dictionary for each time
                 dict2[fields[i]]= description[i]
                 i = i + 1
                   
-        # appending the record of each employee to
+        # appending the record of each time reading to
         # the main dictionary
         dict1[sno]= dict2
         l = l + 1
@@ -64,16 +66,16 @@ with open('test.json', 'r') as f:
 # a dictionary
         json_time_weight = json.load(f)
 
-json_time_weight = output
+#json_time_weight = output
 #print(json_time_weight)
-time_weight_data = json_time_weight
-time_weight_data = np.array(time_weight_data)
-print(time_weight_data)
-time_data = time_weight_data[0]
-weight_data = time_weight_data[1]
+
+time_data = [np.float64(sample['time']) for sample in json_time_weight.values()]
+weight_data = [np.float64(sample['reading']) for sample in json_time_weight.values()]
+
 time_data = np.reshape(time_data, (-1, 1))
 weight_data = np.reshape(weight_data, (-1, 1))
-
+print(time_data)
+print(weight_data)
 # model = LinearRegression(fit_intercept = True)
 
 # model.fit(time_data, weight_data)
