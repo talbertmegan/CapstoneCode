@@ -38,7 +38,7 @@ with open(filename) as fh:
 # creating json file
 with open("test.json", "w") as out_file:
         json.dump(dict1, out_file, indent = 4)
-##creates test data with noise
+##creates test data with noise, not being used now that I have real test data
 #time = np.arange(0, 1000, .5)
 #epsilon = np.random.uniform(-10,10, size=(int(1000/.5),))
 #weight = 4 * time + 100 + epsilon
@@ -56,8 +56,8 @@ time_data = [np.float64(sample['time']) for sample in json_time_weight.values()]
 weight_data = [np.float64(sample['reading']) for sample in json_time_weight.values()]
 time_data = np.reshape(time_data, (-1, 1))
 weight_data = np.reshape(weight_data, (-1, 1))
-print(time_data)
-print(weight_data)
+#print(time_data)
+#print(weight_data)
 maxTime = np.amax(time_data)
 print(maxTime)
 time = np.arange(0,maxTime,0.5)
@@ -70,7 +70,7 @@ print("Slope = ", slope)
 print("Intercept = ", intercept)
 plt.figure()
 plt.scatter(time_data,weight_data, color='dodgerblue')
-plt.plot(time, slope*time+intercept, color="red")
+plt.plot(time, slope*time+intercept, color="red") ##substitute time_data for time here
 plt.xlabel("Time")
 plt.ylabel("Weight")
 plt.title("Cup Weight Over Time")
