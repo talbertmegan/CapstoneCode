@@ -1,11 +1,10 @@
 
-
 //<span style="font-size: 14pt; font-family: 'times new roman', times, serif;">
 #include "HX711.h"
 #include "soc/rtc.h"
 #include <Arduino.h>
 #include <stdlib.h>
-//#include <Wire.h>
+#include <Wire.h>
 //#include <Adafruit_GFX.h>
 //#include <Adafruit_SSD1306.h>
 #include <SimpleTimer.h>
@@ -39,7 +38,7 @@ void setup() {
   
   scale.set_scale();
   scale.tare();
- 
+  Serial.print("Setup complete");
  // display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
  // timer.setInterval(1000L, getSendData);
  // display.clearDisplay();
