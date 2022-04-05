@@ -9,6 +9,7 @@ function LoginButton(){
   
   const onSuccess = (res) => {
     history.push('/home');
+    console.log('[Login Success} currentUser:', res.profileObj );
   };
 
   const onFailure = (res) => { 
