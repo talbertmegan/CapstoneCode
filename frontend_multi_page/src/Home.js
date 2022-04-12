@@ -28,6 +28,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { MonthView } from 'react-calendar';
 import LogoutButton from './LogoutButton';
 
+import {fetchData} from './AwsFunctions';
+
 const locales = {
   "en-US" : require("date-fns/locale/en-US")
 }
@@ -84,6 +86,10 @@ const vol = Math.floor(Math.random()*31);
 const val = (vol/30) * 100; 
 
 function Home() {
+  const fetchDataFormDynamoDb = () => {
+    fetchData('users')
+  }
+
   const today = new Date(); 
   const t = (today.getFullYear(), today.getMonth(), today.getDay());
 
@@ -139,6 +145,7 @@ function Home() {
     ]; 
     return(
       <ResponsiveContainer>
+        <button onClick={() => fetchDataFormDynamoDb()}> Fetch </button>
         <LineChart data={data} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name">
