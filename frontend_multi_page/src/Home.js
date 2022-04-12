@@ -87,7 +87,7 @@ const val = (vol/30) * 100;
 
 function Home() {
   const fetchDataFormDynamoDb = () => {
-    fetchData('users')
+    fetchData('Cup_Table')
   }
 
   const today = new Date(); 
@@ -145,7 +145,6 @@ function Home() {
     ]; 
     return(
       <ResponsiveContainer>
-        <button onClick={() => fetchDataFormDynamoDb()}> Fetch </button>
         <LineChart data={data} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name">
@@ -279,6 +278,7 @@ function Home() {
               <ProgressBar now={val} className="progressBar" variant="danger"/> 
             </Row>
             <LogoutButton/>
+            <Button onClick={() => fetchDataFormDynamoDb()}> Fetch </Button>
           </Col>
         </Row>
       </Container>
