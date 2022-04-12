@@ -3,12 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import * as AWS from 'aws-sdk'
-import aws_config from './aws_config.json';
-
-var config = new AWS.Config(aws_config);
-
-AWS.config.update(config)
 
 ReactDOM.render(
   <React.StrictMode>
