@@ -8,16 +8,39 @@ var config = new AWS.Config(aws_config)
 AWS.config.update(config)
 const docClient = new AWS.DynamoDB.DocumentClient()
 
-export const fetchData = (tableName) => {
-    var params = {
-        TableName: tableName
-    }
+// export const fetchData = async (tableName) => {
+//     var params = {
+//         TableName: tableName
+//     }
 
-    docClient.scan(params, function (err, data) {
-        if (!err) {
-            console.log(data)
-        }
-    })
+//     try {
+//         const results = await docClient.scan(params, function (err, data) {
+//             if (!err) {
+//                 console.log(data)
+//                 return data
+//             }
+//         })
+//         console.log(results.TableNames.join('\n'));
+//     } catch (err) {
+//         console.error(err)
+//     }
+// }
+
+export async function fetchDataByDeviceID(deviceID){
+    try {
+        var params = {
+            KeyConditionExpression: 'deviceID = :deviceID',
+            ExpressionAttributeValues: {
+                ':deviceID': deviceID
+            },
+            TableName: 'Cup_Table'
+        };
+        var result = await docClient.query(params).promise()
+        console.log(JSON.stringify(result.Items))
+        return result.Items
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 export const putData = (tableName , data) => {

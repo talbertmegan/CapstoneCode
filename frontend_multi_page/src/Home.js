@@ -13,7 +13,7 @@ import Stack from 'react-bootstrap/Stack'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Toast from 'react-bootstrap/Toast'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, CartesianGrid, ResponsiveContainer, YAxis, XAxis, Tooltip, Label} from 'recharts';
 import './Style.css';
 
@@ -28,7 +28,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { MonthView } from 'react-calendar';
 import LogoutButton from './LogoutButton';
 
-import {fetchData} from './AwsFunctions';
+import {fetchDataByDeviceID} from './AwsFunctions';
 
 const locales = {
   "en-US" : require("date-fns/locale/en-US")
@@ -86,9 +86,32 @@ const vol = Math.floor(Math.random()*31);
 const val = (vol/30) * 100; 
 
 function Home() {
-  const fetchDataFormDynamoDb = () => {
-    fetchData('Cup_Table')
-  }
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const loadPost = async () => {
+
+        // Till the data is fetch using API 
+        // the Loading page will show.
+        setLoading(true);
+
+        // Await make wait until that 
+        // promise settles and return its result
+        const response = await fetchDataByDeviceID('2')
+
+        // After fetching data stored it in posts state.
+        setData(response);
+
+        // console.log(data)
+
+        // Closed the loading page
+        setLoading(false);
+    }
+
+    // Call the function
+    loadPost();
+  }, []);
 
   const today = new Date(); 
   const t = (today.getFullYear(), today.getMonth(), today.getDay());
@@ -177,7 +200,22 @@ function Home() {
 
   return (
     <div className="App">
-      <Container fluid className="ContainerStyle">
+       {loading ? (
+        <h4>Loading...</h4>) :
+        (data.map((item) =>
+        // Presently we only fetch 
+        // title from the API 
+        <Container>
+          <h4>Device ID: {item.deviceID}</h4>
+          <h4>Timestamp: {item.timestamp}</h4>
+          <h4>Flow Data: {item['flow data'].flow_sensor_a0}</h4>
+          <h4>Accurate: {item['flow data'].stand}</h4>
+          <br />
+        </Container>
+        )
+        )
+      }
+      {/* <Container fluid className="ContainerStyle">
         <Row className="h-100">
           <Col className="ColDashboardItem">
             <Row className="h-50 w-100"> 
@@ -281,7 +319,7 @@ function Home() {
             <Button onClick={() => fetchDataFormDynamoDb()}> Fetch </Button>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
 
     </div>
   );
