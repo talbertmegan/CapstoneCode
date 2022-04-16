@@ -148,27 +148,33 @@ function Home() {
   };
 
   function Chart(props) {
-    const data = [
-      {
-        name: 'Day 1',
-        pv: 10
-      },
-      {
-        name: 'Day 2',
-        pv: 20
-      },
-      {
-        name: 'Day 3',
-        pv: 4
-      },
-      {
-        name: 'Day 4',
-        pv: 2
-      }
-    ]; 
+    // const data = [
+    //   {
+    //     name: 'Day 1',
+    //     pv: 10
+    //   },
+    //   {
+    //     name: 'Day 2',
+    //     pv: 20
+    //   },
+    //   {
+    //     name: 'Day 3',
+    //     pv: 4
+    //   },
+    //   {
+    //     name: 'Day 4',
+    //     pv: 2
+    //   }
+    // ]; 
+    const newData = props.data.map((item) =>
+    ({
+      name: item.timestamp,
+      pv: item['flow data'].flow_sensor_a0
+    })
+    )
     return(
       <ResponsiveContainer>
-        <LineChart data={data} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
+        <LineChart data={newData} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name">
               <Label value = "Day of Period" offset = {0} position = "bottom" />
@@ -290,7 +296,7 @@ function Home() {
               </Col>
 
               <div>
-                <Chart/>
+                <Chart data={data} />
               </div>
 
               <Modal 
