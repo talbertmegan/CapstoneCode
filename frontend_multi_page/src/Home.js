@@ -98,7 +98,7 @@ function Home() {
 
         // Await make wait until that 
         // promise settles and return its result
-        const response = await fetchDataByDeviceID('2')
+        const response = await fetchDataByDeviceID('2', "1647208518468", "1647359141679")
 
         // After fetching data stored it in posts state.
         setData(response);

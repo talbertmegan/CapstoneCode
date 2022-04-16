@@ -26,14 +26,20 @@ const docClient = new AWS.DynamoDB.DocumentClient()
 //     }
 // }
 
-export async function fetchDataByDeviceID(deviceID){
+export async function fetchDataByDeviceID(deviceID, startTimestamp = "0", endTimestamp = "9999999999999"){
     try {
         var params = {
-            KeyConditionExpression: 'deviceID = :deviceID',
-            ExpressionAttributeValues: {
-                ':deviceID': deviceID
+            TableName: "Cup_Table",
+            // IndexName: "timestamp",
+            KeyConditionExpression: "deviceID = :deviceID AND #time BETWEEN :start AND :end",
+            ExpressionAttributeNames: {
+                "#time": "timestamp"
             },
-            TableName: 'Cup_Table'
+            ExpressionAttributeValues: {
+                ':deviceID': deviceID,
+                ":start": startTimestamp,
+                ":end": endTimestamp
+            }
         };
         var result = await docClient.query(params).promise()
         console.log(JSON.stringify(result.Items))
