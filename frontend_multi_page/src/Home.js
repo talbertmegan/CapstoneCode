@@ -200,22 +200,21 @@ function Home() {
 
   return (
     <div className="App">
-       {loading ? (
+       {loading || (data.length <= 0) ? (
         <h4>Loading...</h4>) :
-        (data.map((item) =>
-        // Presently we only fetch 
-        // title from the API 
-        <Container>
-          <h4>Device ID: {item.deviceID}</h4>
-          <h4>Timestamp: {item.timestamp}</h4>
-          <h4>Flow Data: {item['flow data'].flow_sensor_a0}</h4>
-          <h4>Accurate: {item['flow data'].stand}</h4>
-          <br />
-        </Container>
-        )
-        )
-      }
-      {/* <Container fluid className="ContainerStyle">
+        (
+        //   data.map((item) =>
+        // // Presently we only fetch 
+        // // title from the API 
+        // <Container>
+        //   <h4>Device ID: {item.deviceID}</h4>
+        //   <h4>Timestamp: {item.timestamp}</h4>
+        //   <h4>Flow Data: {item['flow data'].flow_sensor_a0}</h4>
+        //   <h4>Accurate: {item['flow data'].stand}</h4>
+        //   <br />
+        // </Container>
+        // )
+        <Container fluid className="ContainerStyle">
         <Row className="h-100">
           <Col className="ColDashboardItem">
             <Row className="h-50 w-100"> 
@@ -310,16 +309,17 @@ function Home() {
               <div> 
                <Notif/> 
               </div>
-              <h2>Current Volume: {vol} mL </h2>
+              <h2>Current Volume: {data.reduce((prev, current) => (prev.timestap > current.timestap) ? prev['flow data'].flow_sensor_a0 : current['flow data'].flow_sensor_a0, 0)} mL </h2>
             </Row>
             <Row>
-              <ProgressBar now={val} className="progressBar" variant="danger"/> 
+              <ProgressBar now={data.reduce((prev, current) => (prev.timestap > current.timestap) ? prev['flow data'].flow_sensor_a0 : current['flow data'].flow_sensor_a0, 0)/30 * 100} className="progressBar" variant="danger"/> 
             </Row>
             <LogoutButton/>
-            <Button onClick={() => fetchDataFormDynamoDb()}> Fetch </Button>
           </Col>
         </Row>
-      </Container> */}
+      </Container>
+        )
+      }
 
     </div>
   );
