@@ -98,7 +98,9 @@ function Home() {
 
         // Await make wait until that 
         // promise settles and return its result
-        const response = await fetchDataByDeviceID('2', "1647208518468", "1647359141679")
+        let currentTimestamp = Date.now().toString();
+        let startTimestamp = (currentTimestamp - 60*60*24*45*1000).toString();//update this to be the correct number of days ago!
+        const response = await fetchDataByDeviceID('2', startTimestamp, currentTimestamp)
 
         // After fetching data stored it in posts state.
         setData(response);
@@ -166,7 +168,7 @@ function Home() {
     //     pv: 2
     //   }
     // ]; 
-    const newData = props.data.map((item) =>
+    const newData = props.data.map((item) => 
     ({
       name: item.timestamp,
       pv: item['flow data'].flow_sensor_a0
@@ -177,7 +179,7 @@ function Home() {
         <LineChart data={newData} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name">
-              <Label value = "Day of Period" offset = {0} position = "bottom" />
+              <Label value = "Time" offset = {0} position = "bottom" />
               </XAxis>
             <YAxis>
             <Label value = "Volume (mL)" offset = {0} position = "left" angle="-90"/>
