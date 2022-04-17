@@ -170,7 +170,7 @@ function Home() {
     // ]; 
     const newData = props.data.map((item) => 
     ({
-      name: item.timestamp,
+      name: new Date(item.timestamp*1).toLocaleString().slice(0,4) + new Date(item.timestamp*1).toLocaleString().slice(10,-6)+new Date(item.timestamp*1).toLocaleString().slice(-2), //really sketchy way of getting time formatted correctly but it works (test with times in the double digits though)
       pv: item['flow data'].flow_sensor_a0
     })
     )
