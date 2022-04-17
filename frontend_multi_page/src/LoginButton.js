@@ -8,7 +8,7 @@ function LoginButton(){
   let history = useHistory();
   
   const onSuccess = (res) => {
-    history.push('/home');
+    history.push({ pathname:'/home', state: {user_name: res.profileObj.name}});
     console.log('[Login Success} currentUser:', res.profileObj );
   };
 

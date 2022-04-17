@@ -27,6 +27,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MonthView } from 'react-calendar';
 import LogoutButton from './LogoutButton';
+import{GoogleLogin} from "react-google-login";
+
+import { useLocation } from 'react-router-dom';
 
 import {fetchDataByDeviceID} from './AwsFunctions';
 
@@ -85,9 +88,12 @@ const t_day = [
 const vol = Math.floor(Math.random()*31); 
 const val = (vol/30) * 100; 
 
+
 function Home() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+
+
 
   useEffect(() => {
     const loadPost = async () => {
@@ -96,16 +102,26 @@ function Home() {
         // the Loading page will show.
         setLoading(true);
 
+        var id_num = '3'
+
+        if (user_name.user_name == "Megan Talbert"){ 
+          id_num = '1';
+        } else if (user_name.user_name == "Emma Lee"){ 
+          id_num = '1'; //change when there's test data for device ID 2
+        }
+  
+
         // Await make wait until that 
         // promise settles and return its result
         let currentTimestamp = Date.now().toString();
         let startTimestamp = (currentTimestamp - 60*60*24*7*1000).toString();//update this to be the correct number of days ago!
-        const response = await fetchDataByDeviceID('1', startTimestamp, currentTimestamp)
+        const response = await fetchDataByDeviceID(id_num, startTimestamp, currentTimestamp)
 
         // After fetching data stored it in posts state.
         setData(response);
 
         // console.log(data)
+        // console.log(user_name.user_name);
 
         // Closed the loading page
         setLoading(false);
@@ -148,6 +164,21 @@ function Home() {
       return "";
     },
   };
+
+  const location = useLocation();
+  const user_name = location.state; 
+  // var id_num = '3'; 
+
+  // function user_ID(){ 
+  //   if ({user_name} == "Megan Talbert"){ 
+  //     id_num = '1';
+  //   } else if({user_name} == "Emma Lee" ){ 
+  //     id_num = '2';
+  //   }
+
+  //   return id_num; 
+  // }
+  
 
   function Chart(props) {
     // const data = [
