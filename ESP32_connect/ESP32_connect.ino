@@ -3,10 +3,30 @@
 #include <MQTTClient.h>
 #include <ArduinoJson.h>
 #include "WiFi.h"
+#include "HX711.h"
+#include "soc/rtc.h"
+#include <Arduino.h>
+#include <stdlib.h>
+#include <Wire.h>
+//#include <Adafruit_GFX.h>
+//#include <Adafruit_SSD1306.h>
+#include <SimpleTimer.h>
+ 
 
 // The MQTT topics that this device should publish/subscribe
 #define AWS_IOT_PUBLISH_TOPIC   "esp32/pub"
 #define AWS_IOT_SUBSCRIBE_TOPIC "esp32/sub"
+#define DOUT  23
+#define CLK  19
+  HX711 scale;
+
+String myString; 
+String cmessage; // complete message
+char buff[10];
+float weight; 
+float calibration_factor = 10002; // for me this vlaue works just perfect 206140  
+int device_id = 1;
+SimpleTimer timer;
 
 WiFiClientSecure net = WiFiClientSecure();
 MQTTClient client = MQTTClient(256);
@@ -55,10 +75,27 @@ void connectAWS()
 
 void publishMessage()
 {
+  scale.set_scale(calibration_factor); //Adjust to this calibration factor
+  weight = scale.get_units(5); //5
+  myString = dtostrf(weight, 3, 3, buff);
+//  while(weight>30 or weight<0){ //should get rid of bad measured values, don't use until correctly calibrated
+//    weight = scale.get_units(5); //5
+//    myString = dtostrf(weight, 3, 3, buff);
+//  }
+  if(Serial.available())
+  {
+    char temp = Serial.read();
+    if(temp == '+' || temp == 'a')
+      calibration_factor += 10;
+    else if(temp == '-' || temp == 'z')
+      calibration_factor -= 10;
+  }
   StaticJsonDocument<200> doc;
+  doc["device_id"] = device_id;
   doc["time"] = millis();
-  doc["flow_sensor_a0"] = analogRead(0);
+  doc["flow_sensor_a0"] = myString;
   doc["stand"] = "false";
+  //doc["calib factor"] = calibration_factor;
   char jsonBuffer[512];
   serializeJson(doc, jsonBuffer); // print to client
 
@@ -76,10 +113,18 @@ void messageHandler(String &topic, String &payload) {
 void setup() {
   Serial.begin(9600);
   connectAWS();
+  scale.begin(DOUT, CLK);
+  //rtc_clk_cpu_freq_set(RTC_CPU_FREQ_80M);
+  scale.set_scale();
+  scale.tare(); //Reset the scale to 0
+  long zero_factor = scale.read_average(); //Get a baseline reading
+  scale.set_scale();
+  scale.tare();
+  Serial.print("Setup complete");
 }
 
 void loop() {
   publishMessage();
   client.loop();
-  delay(30000);
+  delay(10000);
 }

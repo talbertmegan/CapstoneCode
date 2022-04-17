@@ -24,3 +24,6 @@ yarn-error.log*
 
 # AWS Config
 aws_config.json
+
+#AWS IoT
+ESP32_connect/secrets.h
