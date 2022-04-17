@@ -99,8 +99,8 @@ function Home() {
         // Await make wait until that 
         // promise settles and return its result
         let currentTimestamp = Date.now().toString();
-        let startTimestamp = (currentTimestamp - 60*60*24*45*1000).toString();//update this to be the correct number of days ago!
-        const response = await fetchDataByDeviceID('2', startTimestamp, currentTimestamp)
+        let startTimestamp = (currentTimestamp - 60*60*24*7*1000).toString();//update this to be the correct number of days ago!
+        const response = await fetchDataByDeviceID('1', startTimestamp, currentTimestamp)
 
         // After fetching data stored it in posts state.
         setData(response);
@@ -171,7 +171,7 @@ function Home() {
     const newData = props.data.map((item) => 
     ({
       name: new Date(item.timestamp*1).toLocaleString().slice(0,4) + new Date(item.timestamp*1).toLocaleString().slice(10,-6)+new Date(item.timestamp*1).toLocaleString().slice(-2), //really sketchy way of getting time formatted correctly but it works (test with times in the double digits though)
-      pv: item['flow data'].flow_sensor_a0
+      vol: item['flow data'].flow_sensor_a0
     })
     )
     return(
@@ -185,7 +185,7 @@ function Home() {
             <Label value = "Volume (mL)" offset = {0} position = "left" angle="-90"/>
             </YAxis>
             <Tooltip />
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+            <Line type="monotone" dataKey="vol" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
     ) 
