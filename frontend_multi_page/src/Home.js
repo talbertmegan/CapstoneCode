@@ -114,7 +114,7 @@ function Home() {
         // Await make wait until that 
         // promise settles and return its result
         let currentTimestamp = Date.now().toString();
-        let startTimestamp = (currentTimestamp - 60*60*24*7*1000).toString();//update this to be the correct number of days ago!
+        let startTimestamp = (currentTimestamp - 60*30*1000).toString();//update this to be the correct number of days ago!
         const response = await fetchDataByDeviceID(id_num, startTimestamp, currentTimestamp)
 
         // After fetching data stored it in posts state.
@@ -324,7 +324,7 @@ function Home() {
               <Col>
                 <Stack direction="horizontal" gap={3}>
                   <h2 className= "Header" >Data</h2>
-                  <Button className="ms-auto" onClick={() => setShowData(true)}>Expand</Button>  
+                  <Button className="ms-auto" onClick={() => setShowData(true)}>Export</Button>  
                 </Stack>
               </Col>
 
