@@ -35,6 +35,23 @@ margin-bottom: auto;
     color: #6F1A07;
 }
 
+.RightyMighty{
+    margin-left: 90vw; 
+    margin-right: 0;
+    margin-top: 0;
+    float: right;
+    position: fixed;
+    z-index: 3;
+}
+
+.batteryBar { 
+    width: 100px;
+    background-color: white;
+    top: 15px; 
+    text-align: right;
+}
+
+
 .Modal {
     display:flex;
     min-width: 90%;

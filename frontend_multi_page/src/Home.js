@@ -199,10 +199,12 @@ function Home() {
     //     pv: 2
     //   }
     // ]; 
+    var temp = 1;
     const newData = props.data.map((item) => 
     ({
       name: new Date(item.timestamp*1).toLocaleString().slice(0,4) + new Date(item.timestamp*1).toLocaleString().slice(10,-6)+new Date(item.timestamp*1).toLocaleString().slice(-2), //really sketchy way of getting time formatted correctly but it works (test with times in the double digits though)
       vol: item['flow data'].flow_sensor_a0
+      //temp: temp + 5
     })
     )
     return(
@@ -342,7 +344,8 @@ function Home() {
               </Modal>
             </Row>
           </Col>
-
+          < div className="RightyMighty">
+          <ProgressBar now={75} className = "batteryBar" label={`${75}%`} variant="success" /></div>
           <Col className="ColDashboardItem">
             <Row>
               <div> 
