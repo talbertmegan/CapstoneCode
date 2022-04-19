@@ -14,17 +14,20 @@
  
 
 // The MQTT topics that this device should publish/subscribe
-#define AWS_IOT_PUBLISH_TOPIC   "esp32/pub"
+#define AWS_IOT_PUBLISH_TOPIC   "esp32/pub" //change back to esp32/pub for production
 #define AWS_IOT_SUBSCRIBE_TOPIC "esp32/sub"
 #define DOUT  23
 #define CLK  19
+#define BTRY 33
   HX711 scale;
 
-String myString; 
+String myString, battStr;
+float batteryVal; 
 String cmessage; // complete message
 char buff[10];
 float weight; 
-float calibration_factor = 10002; // for me this vlaue works just perfect 206140  
+float weight1, weight2, weight3, weight4, weight5;
+float calibration_factor = 3000; // for me this vlaue works just perfect 206140  
 int device_id = 1;
 SimpleTimer timer;
 
@@ -76,12 +79,20 @@ void connectAWS()
 void publishMessage()
 {
   scale.set_scale(calibration_factor); //Adjust to this calibration factor
-  weight = scale.get_units(5); //5
+  weight1 = scale.get_units(5); //5
+  weight2 = scale.get_units(5);
+  weight3 = scale.get_units(5);
+  weight4 = scale.get_units(5);
+  weight5 = scale.get_units(5);
+  weight = (weight1 + weight2 + weight3 + weight4 + weight5)/5;
+  weight = weight/2;
   myString = dtostrf(weight, 3, 3, buff);
-//  while(weight>30 or weight<0){ //should get rid of bad measured values, don't use until correctly calibrated
-//    weight = scale.get_units(5); //5
-//    myString = dtostrf(weight, 3, 3, buff);
-//  }
+  //while(weight>30 or weight<0){ //should get rid of bad measured values, don't use until correctly calibrated
+  //    weight = scale.get_units(5); //5
+  //    myString = dtostrf(weight, 3, 3, buff);
+  //S}
+  //batteryVal = (analogRead(BTRY)/1023.0)*5.0;
+  //battStr = dtostrf(batteryVal,1,3, buff);
   if(Serial.available())
   {
     char temp = Serial.read();
@@ -93,7 +104,8 @@ void publishMessage()
   StaticJsonDocument<200> doc;
   doc["device_id"] = device_id;
   doc["time"] = millis();
-  doc["flow_sensor_a0"] = myString;
+  doc["flow_sensor_a0"] = weight;
+  //doc["battery_level"] = battStr;
   doc["stand"] = "false";
   //doc["calib factor"] = calibration_factor;
   char jsonBuffer[512];
@@ -126,5 +138,5 @@ void setup() {
 void loop() {
   publishMessage();
   client.loop();
-  delay(10000);
+  delay(3000);
 }
