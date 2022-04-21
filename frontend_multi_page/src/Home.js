@@ -33,6 +33,8 @@ import { useLocation } from 'react-router-dom';
 
 import {fetchDataByDeviceID} from './AwsFunctions';
 
+import {CSVLink} from 'react-csv';
+
 const locales = {
   "en-US" : require("date-fns/locale/en-US")
 }
@@ -167,17 +169,6 @@ function Home() {
 
   const location = useLocation();
   const user_name = location.state; 
-  // var id_num = '3'; 
-
-  // function user_ID(){ 
-  //   if ({user_name} == "Megan Talbert"){ 
-  //     id_num = '1';
-  //   } else if({user_name} == "Emma Lee" ){ 
-  //     id_num = '2';
-  //   }
-
-  //   return id_num; 
-  // }
   
 
   function Chart(props) {
@@ -207,6 +198,7 @@ function Home() {
       //temp: temp + 5
     })
     )
+
     return(
       <ResponsiveContainer>
         <LineChart data={newData} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
@@ -239,6 +231,17 @@ function Home() {
     }
   }
 
+  const headers = [
+    {label: 'TimeStamp', key: "name"},
+    {label: 'Volume', key: "vol"}
+  ];
+
+  const csvReport = { 
+    filename : "cupData.csv",
+    headers : headers,
+    data : data
+  };
+
   return (
     <div className="App">
        {loading || (data.length <= 0) ? (
@@ -262,7 +265,7 @@ function Home() {
               <Col>              
                 <Stack direction="horizontal" gap={3}>
                   <h2>Calendar</h2>
-                  <Button className="ms-auto" onClick={() => setShowCalendar(true)}>Expand</Button>
+                  {/* <Button className="ms-auto" onClick={() => setShowCalendar(true)}>Expand</Button> */}
                 </Stack>
                 <Stack gap={3}>
                   <div>How are you feeling today?</div>
@@ -327,6 +330,10 @@ function Home() {
                 <Stack direction="horizontal" gap={3}>
                   <h2 className= "Header" >Data</h2>
                   <Button className="ms-auto" onClick={() => setShowData(true)}>Export</Button>  
+                  <CSVLink {...csvReport}> 
+                    Export data
+                  </CSVLink>
+
                 </Stack>
               </Col>
 
