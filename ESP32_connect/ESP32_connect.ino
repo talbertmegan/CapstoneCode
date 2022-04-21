@@ -11,7 +11,6 @@
 //#include <Adafruit_GFX.h>
 //#include <Adafruit_SSD1306.h>
 #include <SimpleTimer.h>
- 
 
 // The MQTT topics that this device should publish/subscribe
 #define AWS_IOT_PUBLISH_TOPIC   "esp32/pub" //change back to esp32/pub for production
@@ -27,7 +26,7 @@ String cmessage; // complete message
 char buff[10];
 float weight; 
 float weight1, weight2, weight3, weight4, weight5;
-float calibration_factor = 3000; // for me this vlaue works just perfect 206140  
+float calibration_factor = -6200;//-6150; // value from megans laptop april 20th
 int device_id = 1;
 SimpleTimer timer;
 
@@ -45,7 +44,7 @@ void connectAWS()
     delay(500);
     Serial.print(".");
   }
-  Serial.println("Connected to wifi");
+  Serial.print("Connected to wifi");
 
   // Configure WiFiClientSecure to use the AWS IoT device credentials
   net.setCACert(AWS_CERT_CA);
@@ -76,37 +75,42 @@ void connectAWS()
   Serial.println("AWS IoT Connected!");
 }
 
+void retake(){
+  scale.set_scale(calibration_factor); //Adjust to this calibration factor
+  weight = scale.get_units(5); //5
+  //weight = (weight1 + weight2 + weight3 + weight4 + weight5)/5;
+  Serial.println(weight);
+  weight = weight*-1; 
+}
+
 void publishMessage()
 {
   scale.set_scale(calibration_factor); //Adjust to this calibration factor
-  weight1 = scale.get_units(5); //5
-  weight2 = scale.get_units(5);
-  weight3 = scale.get_units(5);
-  weight4 = scale.get_units(5);
-  weight5 = scale.get_units(5);
-  weight = (weight1 + weight2 + weight3 + weight4 + weight5)/5;
-  weight = weight/2;
-  myString = dtostrf(weight, 3, 3, buff);
-  //while(weight>30 or weight<0){ //should get rid of bad measured values, don't use until correctly calibrated
-  //    weight = scale.get_units(5); //5
-  //    myString = dtostrf(weight, 3, 3, buff);
-  //S}
-  //batteryVal = (analogRead(BTRY)/1023.0)*5.0;
-  //battStr = dtostrf(batteryVal,1,3, buff);
+  weight = scale.get_units(5); //5
+  //weight = (weight1 + weight2 + weight3 + weight4 + weight5)/5;
+
+  weight = weight*-1;
+    while(!(weight>=0 && weight<30)){
+      retake(); 
+    }
+    myString = dtostrf(weight, 3, 2, buff);
+    Serial.println(myString);
+    
   if(Serial.available())
   {
     char temp = Serial.read();
     if(temp == '+' || temp == 'a')
-      calibration_factor += 10;
+      calibration_factor += 20;
     else if(temp == '-' || temp == 'z')
-      calibration_factor -= 10;
+      calibration_factor -= 20;
+    Serial.println(calibration_factor);
   }
   StaticJsonDocument<200> doc;
-  doc["device_id"] = device_id;
-  doc["time"] = millis();
-  doc["flow_sensor_a0"] = weight;
+  //doc["device_id"] = device_id;
+  //doc["time"] = millis();
+  doc["flow_sensor_a0"] = myString;
   //doc["battery_level"] = battStr;
-  doc["stand"] = "false";
+  //doc["stand"] = "false";
   //doc["calib factor"] = calibration_factor;
   char jsonBuffer[512];
   serializeJson(doc, jsonBuffer); // print to client
@@ -117,26 +121,27 @@ void publishMessage()
 void messageHandler(String &topic, String &payload) {
   Serial.println("incoming: " + topic + " - " + payload);
 
-//  StaticJsonDocument<200> doc;
-//  deserializeJson(doc, payload);
-//  const char* message = doc["message"];
+  StaticJsonDocument<200> doc;
+  deserializeJson(doc, payload);
+  const char* message = doc["message"];
 }
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   connectAWS();
   scale.begin(DOUT, CLK);
   //rtc_clk_cpu_freq_set(RTC_CPU_FREQ_80M);
   scale.set_scale();
   scale.tare(); //Reset the scale to 0
   long zero_factor = scale.read_average(); //Get a baseline reading
-  scale.set_scale();
-  scale.tare();
+  Serial.println(zero_factor);
+  //scale.set_scale();
+  //scale.tare();
   Serial.print("Setup complete");
 }
 
 void loop() {
   publishMessage();
   client.loop();
-  delay(3000);
+  delay(10000);
 }
