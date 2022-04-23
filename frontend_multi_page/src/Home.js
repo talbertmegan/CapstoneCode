@@ -190,18 +190,16 @@ function Home() {
     //     pv: 2
     //   }
     // ]; 
-    var temp = 1;
-    const newData = props.data.map((item) => 
+    window.newData = props.data.map((item) => 
     ({
       name: new Date(item.timestamp*1).toLocaleString().slice(0,4) + new Date(item.timestamp*1).toLocaleString().slice(10,-6)+new Date(item.timestamp*1).toLocaleString().slice(-2), //really sketchy way of getting time formatted correctly but it works (test with times in the double digits though)
       vol: item['flow data'].flow_sensor_a0
-      //temp: temp + 5
     })
     )
 
     return(
       <ResponsiveContainer>
-        <LineChart data={newData} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
+        <LineChart data={window.newData} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name">
               <Label value = "Time" offset = {0} position = "bottom" />
@@ -239,7 +237,7 @@ function Home() {
   const csvReport = { 
     filename : "cupData.csv",
     headers : headers,
-    data : data
+    data : window.newData //expData
   };
 
   return (
