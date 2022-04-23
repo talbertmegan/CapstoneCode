@@ -27,7 +27,7 @@ char buff[10];
 float weight; 
 float weight1, weight2, weight3, weight4, weight5;
 float calibration_factor = -6200;//-6150; // value from megans laptop april 20th
-int device_id = 1;
+int DeviceID = 1;
 SimpleTimer timer;
 
 WiFiClientSecure net = WiFiClientSecure();
@@ -79,7 +79,7 @@ void retake(){
   scale.set_scale(calibration_factor); //Adjust to this calibration factor
   weight = scale.get_units(5); //5
   //weight = (weight1 + weight2 + weight3 + weight4 + weight5)/5;
-  Serial.println(weight);
+  //Serial.println(weight);
   weight = weight*-1; 
 }
 
@@ -106,7 +106,7 @@ void publishMessage()
     Serial.println(calibration_factor);
   }
   StaticJsonDocument<200> doc;
-  //doc["device_id"] = device_id;
+  doc["DeviceID"] = DeviceID;
   //doc["time"] = millis();
   doc["flow_sensor_a0"] = myString;
   //doc["battery_level"] = battStr;
