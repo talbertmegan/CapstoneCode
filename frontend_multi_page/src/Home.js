@@ -360,15 +360,14 @@ function Home() {
 
                 </Stack>
               </Col>
-
-              <div>
-                <Chart data={data} />
-              </div>
-
               <div>
                 <ChartExp data = {data}/>
               </div>
 
+
+              <div>
+                <Chart data={data} />
+              </div>
 
               <Modal 
                 show={showData} 
