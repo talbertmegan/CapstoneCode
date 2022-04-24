@@ -88,7 +88,7 @@ const t_day = [
 ]
 
 const vol = Math.floor(Math.random()*31); 
-const val = (vol/30) * 100; 
+
 
 
 function Home() {
@@ -116,7 +116,7 @@ function Home() {
         // Await make wait until that 
         // promise settles and return its result
         let currentTimestamp = Date.now().toString();
-        let startTimestamp = (currentTimestamp - 60*60*24*60*1000).toString();//update this to be the correct number of days ago!
+        let startTimestamp = (currentTimestamp - 60*60*24*10*1000).toString();//update this to be the correct number of days ago!
         const response = await fetchDataByDeviceID(id_num, startTimestamp, currentTimestamp)
 
         // After fetching data stored it in posts state.
@@ -171,35 +171,38 @@ function Home() {
   const user_name = location.state; 
   
 
+  function saveChartData(dat_Name){ 
+    window.newData = dat_Name;
+  }
+  var datalength = 0; 
+  var dataArr = new Array;
+  var num = 75; 
+
   function Chart(props) {
-    // const data = [
-    //   {
-    //     name: 'Day 1',
-    //     pv: 10
-    //   },
-    //   {
-    //     name: 'Day 2',
-    //     pv: 20
-    //   },
-    //   {
-    //     name: 'Day 3',
-    //     pv: 4
-    //   },
-    //   {
-    //     name: 'Day 4',
-    //     pv: 2
-    //   }
-    // ]; 
-    window.newData = props.data.map((item) => 
+    console.log(num);
+
+    num = 100; 
+  
+    const newData = props.data.map((item) => 
     ({
       name: new Date(item.timestamp*1).toLocaleString().slice(0,4) + new Date(item.timestamp*1).toLocaleString().slice(10,-6)+new Date(item.timestamp*1).toLocaleString().slice(-2), //really sketchy way of getting time formatted correctly but it works (test with times in the double digits though)
       vol: item['flow data'].flow_sensor_a0
     })
     )
 
+    //window.newData = newData;
+    // saveChartData(newData);
+    // console.log(window.newData);
+
+    dataArr = newData;
+
+    // console.log(dataArr);
+    //console.log(window.newData);
+
     return(
+      
       <ResponsiveContainer>
-        <LineChart data={window.newData} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
+        <LineChart data={newData} margin={{ top: 5, right: 5, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name">
               <Label value = "Time" offset = {0} position = "bottom" />
@@ -209,13 +212,49 @@ function Home() {
             </YAxis>
             <Tooltip />
             <Line type="monotone" dataKey="vol" stroke="#8884d8" />
+            {console.log(dataArr)}
         </LineChart>
       </ResponsiveContainer>
+      
     ) 
   }
 
+  const headers = [
+    {label: 'TimeStamp', key: "name"},
+    {label: 'Volume', key: "vol"}
+  ];
+
+  const csvReport = { 
+    filename : "cupData.csv",
+    headers : headers,
+    data :  dataArr//expData
+  };
+
+  function ChartExp(props) {
+  
+    const newData = props.data.map((item) => 
+    ({
+      name: new Date(item.timestamp*1).toLocaleString().slice(0,4) + new Date(item.timestamp*1).toLocaleString().slice(10,-6)+new Date(item.timestamp*1).toLocaleString().slice(-2), //really sketchy way of getting time formatted correctly but it works (test with times in the double digits though)
+      vol: item['flow data'].flow_sensor_a0
+    })
+    )
+
+    dataArr = newData;
+
+    return(
+      
+      <Container>
+         <CSVLink data = {dataArr} filename = {"cupData.csV"}>
+           Export data
+         </CSVLink>
+      </Container>
+      
+    ) 
+  }
+
+
   function Notif(props){ 
-    if (val > 85){ 
+    if (data.reduce((prev, current) => (prev.timestap > current.timestap) ? prev['flow data'].flow_sensor_a0 : current['flow data'].flow_sensor_a0, 0)/30 * 100 > 85){ 
       return ( 
         <Toast onClose={toggleShowB} show={showB} animation={false} style = {{marginBottom: "10px"}}>
           <Toast.Header>
@@ -229,17 +268,8 @@ function Home() {
     }
   }
 
-  const headers = [
-    {label: 'TimeStamp', key: "name"},
-    {label: 'Volume', key: "vol"}
-  ];
 
-  const csvReport = { 
-    filename : "cupData.csv",
-    headers : headers,
-    data : window.newData //expData
-  };
-
+  //console.log(dataArr);
   return (
     <div className="App">
        {loading || (data.length <= 0) ? (
@@ -327,10 +357,6 @@ function Home() {
               <Col>
                 <Stack direction="horizontal" gap={3}>
                   <h2 className= "Header" >Data</h2>
-                  <Button className="ms-auto" onClick={() => setShowData(true)}>Export</Button>  
-                  <CSVLink {...csvReport}> 
-                    Export data
-                  </CSVLink>
 
                 </Stack>
               </Col>
@@ -338,6 +364,11 @@ function Home() {
               <div>
                 <Chart data={data} />
               </div>
+
+              <div>
+                <ChartExp data = {data}/>
+              </div>
+
 
               <Modal 
                 show={showData} 
@@ -348,6 +379,8 @@ function Home() {
                 <Chart/>
               </Modal>
             </Row>
+            {/* {console.log(window.newData)} */}
+            
           </Col>
           < div className="RightyMighty">
           <ProgressBar now={75} className = "batteryBar" label={`${75}%`} variant="success" /></div>
@@ -367,6 +400,8 @@ function Home() {
       </Container>
         )
       }
+
+      {console.log(num)}
 
     </div>
   );
