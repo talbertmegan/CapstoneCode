@@ -29,7 +29,7 @@ const docClient = new AWS.DynamoDB.DocumentClient()
 export async function fetchDataByDeviceID(deviceID, startTimestamp = "0", endTimestamp = "9999999999999"){
     try {
         var params = {
-            TableName: "Cup_Table",
+            TableName: "Cup_Table1",
             // IndexName: "timestamp",
             KeyConditionExpression: "deviceID = :deviceID AND #time BETWEEN :start AND :end",
             ExpressionAttributeNames: {
