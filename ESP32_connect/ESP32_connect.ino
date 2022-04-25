@@ -38,13 +38,13 @@ void connectAWS()
   WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
-  Serial.println("Connecting to Wi-Fi");
+  Serial.println("Connecting to Wi-Fi \n");
 
   while (WiFi.status() != WL_CONNECTED){
     delay(500);
     Serial.print(".");
   }
-  Serial.print("Connected to wifi");
+  Serial.println("Connected to wifi \n");
 
   // Configure WiFiClientSecure to use the AWS IoT device credentials
   net.setCACert(AWS_CERT_CA);
@@ -57,7 +57,7 @@ void connectAWS()
   // Create a message handler
   client.onMessage(messageHandler);
 
-  Serial.print("Connecting to AWS IOT");
+  Serial.println("Connecting to AWS IOT");
 
   while (!client.connect(THINGNAME)) {
     Serial.print(".");
@@ -72,7 +72,7 @@ void connectAWS()
   // Subscribe to a topic
   client.subscribe(AWS_IOT_SUBSCRIBE_TOPIC);
 
-  Serial.println("AWS IoT Connected!");
+  Serial.println("AWS IoT Connected! \n");
 }
 
 void retake(){
@@ -134,7 +134,7 @@ void setup() {
   scale.set_scale();
   scale.tare(); //Reset the scale to 0
   long zero_factor = scale.read_average(); //Get a baseline reading
-  Serial.println(zero_factor);
+  //Serial.println(zero_factor);
   //scale.set_scale();
   //scale.tare();
   Serial.print("Setup complete");
