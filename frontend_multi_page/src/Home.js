@@ -176,12 +176,9 @@ function Home() {
   }
   var datalength = 0; 
   var dataArr = new Array;
-  var num = 75; 
 
   function Chart(props) {
-    console.log(num);
 
-    num = 100; 
   
     const newData = props.data.map((item) => 
     ({
@@ -398,7 +395,6 @@ function Home() {
         )
       }
 
-      {console.log(num)}
 
     </div>
   );
