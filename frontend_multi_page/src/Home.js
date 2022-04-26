@@ -107,9 +107,9 @@ function Home() {
         var id_num = '3'
 
         if (user_name.user_name == "Megan Talbert"){ 
-          id_num = '2';
+          id_num = '1';
         } else if (user_name.user_name == "Emma Lee"){ 
-          id_num = '1'; //change when there's test data for device ID 2
+          id_num = '2'; //change when there's test data for device ID 2
         }
   
 

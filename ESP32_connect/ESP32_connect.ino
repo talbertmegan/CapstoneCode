@@ -11,9 +11,8 @@
 //#include <Adafruit_GFX.h>
 //#include <Adafruit_SSD1306.h>
 #include <SimpleTimer.h>
-
 // The MQTT topics that this device should publish/subscribe
-#define AWS_IOT_PUBLISH_TOPIC   "esp32/pub" //change back to esp32/pub for production
+#define AWS_IOT_PUBLISH_TOPIC   "esp32/pub" 
 #define AWS_IOT_SUBSCRIBE_TOPIC "esp32/sub"
 #define DOUT  23
 #define CLK  19
@@ -79,7 +78,7 @@ void retake(){
   scale.set_scale(calibration_factor); //Adjust to this calibration factor
   weight = scale.get_units(5); //5
   //weight = (weight1 + weight2 + weight3 + weight4 + weight5)/5;
-  //Serial.println(weight);
+  Serial.println(weight);
   weight = weight*-1; 
 }
 
@@ -106,7 +105,7 @@ void publishMessage()
     Serial.println(calibration_factor);
   }
   StaticJsonDocument<200> doc;
-  doc["DeviceID"] = DeviceID;
+  //doc["DeviceID"] = DeviceID;
   //doc["time"] = millis();
   doc["flow_sensor_a0"] = myString;
   //doc["battery_level"] = battStr;
@@ -129,6 +128,8 @@ void messageHandler(String &topic, String &payload) {
 void setup() {
   Serial.begin(115200);
   connectAWS();
+  Serial.println(AWS_IOT_PUBLISH_TOPIC);
+  Serial.println("test\n");
   scale.begin(DOUT, CLK);
   //rtc_clk_cpu_freq_set(RTC_CPU_FREQ_80M);
   scale.set_scale();
